@@ -164,3 +164,17 @@ definitions:
         type: string
       lastName:
         type: string
+  Transaction:
+    properties:
+      date:
+        type: string
+        description: date that transaction occurred
+      description:
+        type: string
+        description: what this transaction was for
+      amount:
+        type: number
+        description: amount that the transaction was for
+      balance:
+        type: number
+        description: remaining balance after transaction was completed
