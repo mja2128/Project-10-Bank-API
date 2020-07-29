@@ -1,0 +1,156 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.nav-brand {
+  display: inline-block;
+}
+
+.hero-left-text {
+  float: left;
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 155%;
+  /* or 56px */
+
+  color: #FFFFFF;
+}
+
+.hero-cta {
+  align-self: flex-end;
+  justify-self: flex-end;
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 28px;
+
+  color: #FFFFFF;
+
+}
+
+.account-benefit-container {
+  text-align: center;
+}
+
+.account-benefit-icon {
+  margin-bottom: 14px;
+}
+
+.account-benefit-title {
+  font-weight: 500;
+}
+
+.footer {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 14px;
+  /* identical to box height */
+
+  text-align: center;
+  margin-top: 30px;
+
+  color: #000000;
+}
+
+.login-card {
+  width: 512px;
+
+  margin-left: auto;
+  margin-right: auto;
+  padding: 24px;
+}
+
+.nav-signin-green {
+  color: #61B37B;
+}
+
+.profile-content {
+  text-align: center;
+
+  margin-bottom: 1rem;
+}
+
+.account {
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+.profile-welcome {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 36px;
+  line-height: 42px;
+  text-align: center;
+}
+
+.profile-name {
+  color: #61B37B;
+}
+
+.edit-button {
+  border-radius: 4px;
+  background-color: #61B37B;
+  color: white;
+  height: 48px;
+  width: 124px;
+}
+
+.settings-icon {
+  margin-left: 24px;
+  margin-right: 24px;
+}
+
+.profile-name-nav {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 28px;
+  text-align: right;
+  margin-right: 0.75rem;
+
+  color: #61B37B;
+}
