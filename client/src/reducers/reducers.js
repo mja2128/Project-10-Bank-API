@@ -1,64 +1,26 @@
-import { combineReducers } from 'redux';
 import {
     LOGIN,
-    UPDATE_PROFILE,
-} from './actions';
+    SAVE_PROFILE,
+    EDIT_PROFILE,
+} from '../actions/actions';
 
-function selectedSubreddit(state = 'reactjs', action) {
+export default function user(state = {}, action) {
     switch (action.type) {
-        case SELECT_SUBREDDIT:
-            return action.subreddit
+        case LOGIN:
+            return {...state,
+                user: action.user
+            };
+        case SAVE_PROFILE:
+            return {
+                ...state,
+                user: action.user
+            };
+        case EDIT_PROFILE:
+            return {
+                ...state,
+                isEditing: action.isEditing
+            };
         default:
             return state
     }
-}
-
-function posts(
-    state = {
-        isFetching: false,
-        didInvalidate: false,
-        items: []
-    },
-    action
-) {
-    switch (action.type) {
-        case INVALIDATE_SUBREDDIT:
-            return Object.assign({}, state, {
-                didInvalidate: true
-            })
-        case REQUEST_POSTS:
-            return Object.assign({}, state, {
-                isFetching: true,
-                didInvalidate: false
-            })
-        case RECEIVE_POSTS:
-            return Object.assign({}, state, {
-                isFetching: false,
-                didInvalidate: false,
-                items: action.posts,
-                lastUpdated: action.receivedAt
-            })
-        default:
-            return state
-    }
-}
-
-function postsBySubreddit(state = {}, action) {
-    switch (action.type) {
-        case INVALIDATE_SUBREDDIT:
-        case RECEIVE_POSTS:
-        case REQUEST_POSTS:
-            return Object.assign({}, state, {
-                [action.subreddit]: posts(state[action.subreddit], action)
-            })
-        default:
-            return state
-    }
-}
-
-const rootReducer = combineReducers({
-    postsBySubreddit,
-    selectedSubreddit
-});
-
-export default rootReducer;
+};

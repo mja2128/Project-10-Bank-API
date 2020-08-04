@@ -1,37 +1,49 @@
 import axios from 'axios';
 
-export const REQUEST_LOGIN = 'REQUEST_LOGIN';
+export const LOGIN = 'LOGIN';
+export const SAVE_PROFILE = 'SAVE_PROFILE';
 export const EDIT_PROFILE = 'EDIT_PROFILE';
 
-export function requestLogin(user) {
-    return {
-        type: REQUEST_LOGIN,
-        user
+export function login(user, history) {
+    return dispatch => {
+        axios.post('http://localhost:3001/api/v1/user/login', user).then((response) => {
+            localStorage.setItem('token', response.data.body.token);
+
+            const config = {
+                headers: {
+                    authorization: `Bearer ${localStorage.getItem('token')}`,
+                }
+            };
+            axios.post('http://localhost:3001/api/v1/user/profile', {}, config).then((response) => {
+                dispatch({
+                    type: LOGIN,
+                    user: response.data.body
+                });
+                history.push('/profile');
+            })
+        });
     }
 }
 
-export function editProfile(profile) {
-    return {
-        type: EDIT_PROFILE,
-        profile
+export function saveProfile(user) {
+    return dispatch => {
+        dispatch(editProfile(false));
+
+        const config = {
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('token')}`,
+            }
+        };
+        axios.put('http://localhost:3001/api/v1/user/profile', { ...user }, config).then((response) => {
+            dispatch({
+                type: SAVE_PROFILE,
+                user: response.data.body
+            });
+        });
     }
 }
 
-export function login(state, subreddit) {
-    const posts = state.postsBySubreddit[subreddit]
-    if (!posts) {
-        return true
-    } else if (posts.isFetching) {
-        return false
-    } else {
-        return posts.didInvalidate
-    }
-}
-
-export function saveProfile(subreddit) {
-    return (dispatch, getState) => {
-        if (shouldFetchPosts(getState(), subreddit)) {
-            return dispatch(fetchPosts(subreddit))
-        }
-    }
-}
+export const editProfile = isEditing => ({
+    type: EDIT_PROFILE,
+    isEditing
+})
